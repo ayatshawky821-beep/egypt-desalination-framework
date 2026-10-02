@@ -1,0 +1,40 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata below, and please cite the accompanying manuscript."
+title: "MF/UF/NF/RO Desalination Design Framework — Egypt Case Study"
+type: software
+authors:
+  - family-names: Najjaa
+    given-names: Ayat S.
+    affiliation: "Chemical Engineering Department, Faculty of Engineering, Cairo University, Giza, 12613, Egypt"
+  - family-names: Ettouney
+    given-names: Reem S.
+    affiliation: "Chemical Engineering Department, Faculty of Engineering, Cairo University, Giza, Egypt"
+  - family-names: El-Rifai
+    given-names: Mahmoud A.
+    affiliation: "Chemical Engineering Department, Faculty of Engineering, Cairo University, Giza, Egypt"
+  - family-names: Tewfik
+    given-names: Shadia
+    affiliation: "Chemical Engineering and Pilot Plant Department, National Research Centre, El-Buhouth Street, Dokki, Giza, Egypt"
+  - family-names: Elsayed
+    given-names: Marwa M.
+    affiliation: "National Research Centre, Giza, Egypt"
+repository-code: "https://github.com/REPLACE-WITH-YOUR-USERNAME/REPLACE-WITH-REPO-NAME"
+license: MIT
+version: "1.0.0"
+date-released: "2026-10-02"
+preferred-citation:
+  type: article
+  title: "MF/UF/NF/RO Desalination Design Framework: A Case Study on Brackish Groundwater and Agricultural Drainage Water Desalination in Egypt"
+  authors:
+    - family-names: Najjaa
+      given-names: Ayat S.
+    - family-names: Ettouney
+      given-names: Reem S.
+    - family-names: El-Rifai
+      given-names: Mahmoud A.
+    - family-names: Tewfik
+      given-names: Shadia
+    - family-names: Elsayed
+      given-names: Marwa M.
+  year: 2026
+  journal: "REPLACE-WITH-JOURNAL-NAME-ONCE-ACCEPTED"
