@@ -39,6 +39,10 @@ this size CAN support.
 # None, opex_usd_per_m3, source_key)
 # source_key: "pearson_fl" | "pearson_tx" | "dawoud_elalamein" | "elsayed_adw"
  
+# NOTE (v1.1.1): the entry "Nile Delta ADW ZLD (Egypt, agricultural drainage)" is NOT an operating plant. It is a conceptual
+# 300,000 m3/day design study (El Sayed et al., Membranes 12, 923, 2022) whose SEC, capital and operating costs are design-software
+# estimates (SEC 1.49 = whole-system electricity incl. pretreatment and thermal unit; RO train alone 1.31 kWh/m3). Treat it as a
+# design benchmark, not as a measurement.
 REAL_BWRO_PLANTS = [
     # --- Pearson et al. (2021) Table 2: Southwest Florida BWRO plants (OPEX only) ---
     {"name": "Cape Coral North (FL)", "capacity_m3d": 45420, "tds_mg_l": 2452,

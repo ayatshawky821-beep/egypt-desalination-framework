@@ -1,80 +1,76 @@
 # MF/UF/NF/RO Desalination Design Framework — Egypt Case Study
 
-Companion source code for:
+Companion source code for two manuscripts by Najjaa, Ettouney, El-Rifai, Tewfik & Elsayed:
 
-> Najjaa, A.S., Ettouney, R.S., El-Rifai, M.A., Tewfik, S., & Elsayed, M.M.
-> *MF/UF/NF/RO Desalination Design Framework: A Case Study on Brackish
-> Groundwater and Agricultural Drainage Water Desalination in Egypt.*
-> (Manuscript in preparation / submission.)
+1. *MF/UF/NF/RO Desalination Design Framework: A Case Study on Brackish Groundwater and Agricultural Drainage Water Desalination in Egypt.*
+2. *Comparing four AI methods for large-scale brackish-water desalination design on a physics-based model.*
 
-A conceptual/preliminary design calculator for brackish-groundwater and
-seawater reverse osmosis (RO) and nanofiltration (NF) desalination plants,
-built around five Egyptian feed-water presets (El Moghra Aquifer, Nile
-Delta shallow aquifer, Western Desert/Nubian Sandstone Aquifer, Sinai
-coastal aquifer, and agricultural drainage water) alongside a generic
-open-ocean seawater case. It covers the full treatment train — pretreatment,
-MF/UF/NF/RO filtration (including two-stage concentrate staging), post-
-treatment, brine/concentrate management, and a capital/operating cost and
-return-on-investment layer — plus a parametric sensitivity study, a
-real-world 18-plant validation/calibration dataset, and a machine-learning
-surrogate model for rapid design-space screening.
+**v1.0.0** contained the physics framework (paper 1). **v1.1.1** (this release) adds the upgraded ML surrogate, the AI optimisation modules, the validation scripts and the scripts that reproduce every number and figure of paper 2. v1.1.1 supersedes any v1.1.0: it replaces the Stillwell & Webber script (see below).
 
 ## Files
 
+### Physics-based framework (paper 1)
 | File | Purpose |
 |---|---|
-| `desalination_plant_design.py` | Core engineering module: feed-water presets, filtration train sizing (pretreatment through brine management), and the economic analysis (CAPEX/OPEX/LCOW/ROI) classes. Includes the groundwater/source-water lift energy term (`groundwater_lift_sec_kwh_m3`) and per-preset assumed pumping heads. Run directly for a worked example: `python3 desalination_plant_design.py` |
-| `egypt_parametric_study.py` | Generates the paper's nine parametric sensitivity figures (SEC vs. TDS, concentrate vs. recovery, evaporation-pond area, NF vs. RO pressure, brackish vs. seawater energy, cross-site comparison, LCOW vs. capacity, payback vs. recovery, LCOW vs. TDS). Run directly to regenerate all figures: `python3 egypt_parametric_study.py` |
-| `real_world_bwro_dataset.py` | Curated dataset of 18 real/planned brackish-water RO plants (capacity, TDS, reported or estimated specific energy, CAPEX/OPEX where available) used for validation. |
-| `real_data_calibration.py` | Fits the framework's empirical CAPEX-scaling exponent and compares predicted vs. measured OPEX/SEC against the real-plant dataset. |
-| `egypt_ml_surrogate.py` | Trains a random-forest surrogate model on synthetic design-space sweeps to screen capacity/TDS/recovery combinations without running the full sizing calculation. |
+| `desalination_plant_design.py` | Core module: feed-water presets, pretreatment, MF/UF/NF/RO sizing, post-treatment, brine management, CAPEX/OPEX/LCOW/ROI. Includes the optional groundwater-lift term (`groundwater_lift_sec_kwh_m3`). |
+| `egypt_parametric_study.py` | Nine parametric figures of paper 1. |
+| `real_world_bwro_dataset.py`, `real_data_calibration.py` | 18-case validation set (operating plants and published design studies; see the note in the file) and the CAPEX/OPEX calibration. |
+| `egypt_ml_surrogate.py` | 6,000-sample dataset; random forest vs gradient boosting vs MLP for LCOW and SEC. |
+| `ai_design_optimizer.py` | 2-D Bayesian optimisation (Gaussian process + expected improvement) of recovery and capacity. |
 
-## Installation
+### AI methods (paper 2)
+| File | Purpose |
+|---|---|
+| `ai_multi_objective_design.py` | NSGA-II (from scratch) and multi-objective Bayesian optimisation (Chebyshev scalarisation) on LCOW / SEC / pond area, 100,000–300,000 m³/day. |
+| `ai_deep_surrogate_large_scale.py` | Surrogates for 100,000–600,000 m³/day and the extrapolation experiment. |
+| `ai_multi_plant_rl.py` | REINFORCE (from scratch) for four-site allocation, versus greedy and random policies. |
 
+### Validation and statistics (paper 2)
+| File | Purpose |
+|---|---|
+| `validate_nsga2_benchmarks.py` | NSGA-II on ZDT1/ZDT2 (known Pareto fronts). |
+| `statistical_validation.py` | Multi-seed runs, Wilcoxon tests, hyperparameter sensitivity. MOBO takes about 100 s per seed; use `run_nsga2_mobo_chunk(start, end)`. |
+| `nsga2_mobo_results.json`, `rl_multiseed_results.json` | Raw per-seed results behind the statistics. |
+| `external_validation_rosa_egypt.py` | Model SEC versus the Rosa et al. (2025) energy–salinity curve and two Hurghada (Egypt) plants. |
+| `external_validation_stillwell.py` | **Revised.** Salinity-slope comparison with Stillwell & Webber (2016). The printed equation's absolute level is not used (see below). |
+| `rosa_et_al_2025_source_data.xlsx` | Third-party data (CC BY 4.0), see below. |
+
+### Reproducing the numbers and figures of paper 2 (run in this order)
+```bash
+python3 analysis_extrapolation_and_validation.py          # ~2 min; writes analysis_a.json
+python3 analysis_hypervolume_seed42.py                    # ~2 min; writes fronts_seed42.npz
+python3 analysis_hypervolume_populations_and_seeds.py     # ~4 min; writes analysis_b2.json
+python3 make_manuscript_figures.py                        # writes figs/fig1-4.png
+python3 analysis_design_study_comparison.py               # design-study SEC, cost and recovery comparison
+```
+
+## Install and run
 ```bash
 pip install -r requirements.txt
+python3 desalination_plant_design.py          # worked example
+python3 ai_multi_objective_design.py          # NSGA-II vs MOBO
+python3 ai_deep_surrogate_large_scale.py      # large-scale surrogate
+python3 ai_multi_plant_rl.py                  # RL allocation
+python3 validate_nsga2_benchmarks.py          # algorithm validation
+python3 external_validation_rosa_egypt.py     # external check 1
+python3 external_validation_stillwell.py      # external check 2 (slope only)
 ```
+Run all scripts from the repository root (they import each other).
 
-## Usage
+## Correction note (v1.1.0 → v1.1.1)
+v1.1.0 contained a Stillwell & Webber SEC equation whose coefficients had been rescaled by a search until a published example (Carlsbad) was matched. That fit needed a sign reversal that contradicts the source paper and was **wrong**; it has been removed. The printed equation uses coefficients rounded to two significant figures and cannot be used for absolute SEC; only its raw-water-salinity slope is used. No manuscript result depends on the removed fit.
 
-```bash
-# Worked example: size a 20,000 m3/day El Moghra brackish RO plant
-python3 desalination_plant_design.py
+## Correction note on the 300,000 m³/day entry
+Materials released with v1.0.0 and v1.1.0 describe the "Nile Delta ADW ZLD" entry of the validation set as a real or full-scale plant. It is a conceptual design study with design-software estimates, not an operating plant (see paper 2).
 
-# Regenerate all nine parametric-study figures (curve1...curve9.png)
-python3 egypt_parametric_study.py
-
-# Compare framework predictions against the real-plant dataset
-python3 real_data_calibration.py
-
-# Train and evaluate the ML surrogate model
-python3 egypt_ml_surrogate.py
-```
+## Third-party data and attribution
+`rosa_et_al_2025_source_data.xlsx` is the unmodified supplementary dataset of Rosa, L., Gabrielli, P. & Sangiorgio, M. (2025), Zenodo, https://doi.org/10.5281/zenodo.15569107, licensed **CC BY 4.0**. It is redistributed under that licence; the MIT licence of this repository applies to the code only. The two Hurghada plants (vendor case studies: Energy Recovery, Inc., 2024; Danfoss, 2021), the 300,000 m³/day Nile Delta design study (El Sayed et al., Membranes 12, 923, 2022; a conceptual design, not an operating plant) and the Stillwell & Webber (2016) slope are used as published values.
 
 ## Scope and limitations
+Planning-level conceptual design tool, not a substitute for vendor projection software, pumping tests or certified water analyses. Comparison with independent data (paper 2) shows that the model's brackish-water SEC depends strongly on recovery (within about 10% of a global curve and of a published 300,000 m³/day design study's RO train at 90% recovery, 20–40% lower at 75–85%), that its rise with salinity is 1.6–2.6 times that of the references, and that its capital cost at 300,000 m³/day is 72% above that design study's estimate. No operating plant above 100,000 m³/day was available, so absolute LCOW, SEC and payback values are uncalibrated at large scale. Pumping heads and the 2.2 m/year evaporation rate are documented placeholders.
 
-This is a **planning-level conceptual design tool**, not a substitute for
-detailed hydraulic simulation (e.g., membrane-vendor projection software),
-a site-specific pumping test, or a certified water analysis. Several model
-inputs are explicitly documented placeholders pending site-specific data —
-most notably the assumed groundwater pumping heads (30-150 m range, varying
-by preset) and the 2.2 m/year net evaporation rate used for evaporation-
-pond sizing. See the accompanying manuscript's Limitations section and
-Appendix A for the full governing-equations documentation.
-
-## License
-
-MIT License — see `LICENSE`.
-
-## Citation
-
-See `CITATION.cff`. If you use this code, please cite the accompanying
-manuscript (details above) and, where convenient, this software release
-via its Zenodo DOI.
+## Licence
+Code: MIT (see `LICENSE`). Third-party data: CC BY 4.0.
 
 ## Generative AI disclosure
-
-Large language model assistance (Claude, Anthropic) was used in drafting
-portions of this codebase and its documentation, under the direction and
-review of the human author(s), who remain solely responsible for its
-correctness.
+Large language model assistance (Claude, Anthropic) was used in writing portions of this code and documentation, under the direction and review of the authors, who remain responsible for its correctness.
