@@ -134,7 +134,7 @@ def summary_stats():
     caps = np.array([p["capacity_m3d"] for p in REAL_BWRO_PLANTS])
     opex = np.array([p["opex_usd_m3"] for p in REAL_BWRO_PLANTS])
     tds = np.array([p["tds_mg_l"] for p in REAL_BWRO_PLANTS])
-    print(f"n = {len(REAL_BWRO_PLANTS)} real plants")
+    print(f"n = {len(REAL_BWRO_PLANTS)} cases (17 operating plants, 1 design study)")
     print(f"Capacity range: {caps.min():,.0f} - {caps.max():,.0f} m3/d")
     print(f"TDS range: {tds.min():,.0f} - {tds.max():,.0f} mg/L")
     print(f"OPEX range: ${opex.min():.2f} - ${opex.max():.2f}/m3")

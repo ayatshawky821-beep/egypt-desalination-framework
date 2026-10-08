@@ -301,7 +301,7 @@ class PretreatmentTrain:
             # hardness, organic loading (COD/BOD), and microbiological contamination (algae,
             # coliforms) than natural brackish groundwater at comparable TDS, because it is a
             # mixture of irrigation return flows, shallow groundwater seepage, and some municipal
-            #/agro-industrial effluent. NaOH dose is scaled from the real full-scale design of
+            #/agro-industrial effluent. NaOH dose is scaled from the full-scale design study of
             # El Sayed et al. (2022): 400 mg/L NaOH achieving ~90% Ca and ~67% Mg removal by
             # precipitation for a feed of comparable hardness (~849 mg/L as CaCO3).
             reference_hardness = 849.0
@@ -326,7 +326,7 @@ class PretreatmentTrain:
                 "observed_bod_mg_l": self.feed.bod_mg_l,
                 "note": "Organic loading from agricultural drainage (residual fertilizer, crop "
                         "residue, some municipal/agro-industrial effluent) increases biofouling "
-                        "risk; chlorination (typical dose 8 mg/L, per real ADW plant design) "
+                        "risk; chlorination (typical dose 8 mg/L, per the ADW design study) "
                         "ahead of softening is standard practice, in addition to the RO/NF "
                         "antiscalant dose above",
             }
@@ -616,7 +616,7 @@ class TwoStageROConcentrateStaging:
     stage recoveries (90% / 60%) are taken directly from the full-scale
     (300,000 m3/d) agricultural drainage water design of El Sayed et al.
     (2022), Membranes 12(10):923, rather than assumed from first
-    principles, since this is a real, built design pattern rather than a
+    principles, since this is a published design pattern rather than a
     generic rule of thumb."""
     feed_flow_m3d: float
     feed_tds_mg_l: float
@@ -645,7 +645,7 @@ class TwoStageROConcentrateStaging:
                              - stage2_permeate * stage2_permeate_tds) / stage2_concentrate)
  
         return {
-            "design_basis": "El Sayed et al. (2022), Membranes 12(10):923 (full-scale ADW ZLD plant)",
+            "design_basis": "El Sayed et al. (2022), Membranes 12(10):923 (conceptual full-scale ADW ZLD design study)",
             "stage1": {
                 "feed_m3d": round(self.feed_flow_m3d, 0),
                 "recovery_pct": self.stage1_recovery * 100,

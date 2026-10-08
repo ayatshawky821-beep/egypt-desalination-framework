@@ -70,7 +70,7 @@ e_meas = EconomicAnalysis(capacity_m3d=cap_p, water_type="brackish", specific_en
 e_fw = EconomicAnalysis(capacity_m3d=cap_p, water_type="brackish", specific_energy_kwh_m3=fw75).run_full_analysis()
 print("OPEX with design-study SEC: %.3f  | OPEX with framework's own SEC: %.3f | reported 0.487" % (e_meas["opex"]["opex_total_usd_m3"], e_fw["opex"]["opex_total_usd_m3"]))
 print("CAPEX per m3/d: framework %.1f vs reported 396" % e_meas["capex"]["capex_per_m3d_usd"])
-out["plant"] = {"fw_sec_075": fw75, "rosa": rosa_p, "meas": meas, "opex_meas": e_meas["opex"]["opex_total_usd_m3"],
-                "opex_fw": e_fw["opex"]["opex_total_usd_m3"], "capex": e_meas["capex"]["capex_per_m3d_usd"]}
+out["design_study"] = {"fw_sec_075": fw75, "rosa": rosa_p, "whole_system_sec_design_study": meas, "opex_with_design_study_sec": e_meas["opex"]["opex_total_usd_m3"],
+                "opex_with_model_sec": e_fw["opex"]["opex_total_usd_m3"], "capex": e_meas["capex"]["capex_per_m3d_usd"]}
 json.dump(out, open("analysis_a.json", "w"))
 print("saved")

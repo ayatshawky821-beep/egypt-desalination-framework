@@ -135,7 +135,7 @@ def real_data_ml_loocv():
  
  
 def egyptian_plant_predictions():
-    """Framework (recalibrated) predictions for the two Egyptian real plants."""
+    """Framework (recalibrated) predictions for the two Egyptian cases (one operating plant, one design study)."""
     from desalination_plant_design import EconomicAnalysis
     rows = {}
     for p in REAL_BWRO_PLANTS:
@@ -210,7 +210,7 @@ if __name__ == "__main__":
           f"fitted value at 20,000 m3/d = ${fits['capex_at_20k']:.0f}/m3/day")
     make_plot(train, test, nonenergy, c_median, test_rows, act, fits)
  
-    print("\nLeave-one-out ML on the 18 real plants (target: OPEX USD/m3):")
+    print("\nLeave-one-out ML on the 18 cases (target: OPEX USD/m3):")
     for k, v in real_data_ml_loocv().items():
         print(f"  {k:26s} MAE = {v['mae']:.3f}  MAPE = {v['mape']:.0f}%  R2 = {v['r2']:+.3f}")
     print("\nRecalibrated framework vs. the two Egyptian plants:")
