@@ -1,0 +1,282 @@
+{
+ "ranges": {
+  "net_evaporation_m_yr": [
+   0.75,
+   2.8
+  ],
+  "pumping_head_m": [
+   30.0,
+   180.0
+  ],
+  "tariff_usd_kwh": [
+   0.03,
+   0.1
+  ],
+  "opex_nonenergy_usd_m3": [
+   0.2,
+   0.6
+  ],
+  "capex_usd_per_m3d": [
+   650.0,
+   1100.0
+  ],
+  "capex_exponent": [
+   -0.2,
+   0.05
+  ],
+  "discount_rate": [
+   0.06,
+   0.14
+  ],
+  "availability": [
+   0.85,
+   0.95
+  ]
+ },
+ "base_params": {
+  "net_evaporation_m_yr": 2.2,
+  "pumping_head_m": 120,
+  "tariff_usd_kwh": 0.045,
+  "opex_nonenergy_usd_m3": 0.4,
+  "capex_usd_per_m3d": 870.0,
+  "capex_exponent": -0.09,
+  "discount_rate": 0.1,
+  "availability": 0.9
+ },
+ "runs": [
+  {
+   "capacity_m3d": 20000.0,
+   "N": 16384,
+   "seed": 1,
+   "lcow": {
+    "mean": 0.8274850769042968,
+    "sd": 0.1404893442867018,
+    "p05": 0.602,
+    "p50": 0.826,
+    "p95": 1.06,
+    "min": 0.445,
+    "max": 1.272,
+    "S1": {
+     "net_evaporation_m_yr": 0.0,
+     "pumping_head_m": 0.011769595211992792,
+     "tariff_usd_kwh": 0.05913904533490373,
+     "opex_nonenergy_usd_m3": 0.6764018026663753,
+     "capex_usd_per_m3d": 0.11243336753490217,
+     "capex_exponent": 0.0,
+     "discount_rate": 0.12033339693509043,
+     "availability": 0.0048396110694905545
+    },
+    "ST": {
+     "net_evaporation_m_yr": 0.0,
+     "pumping_head_m": 0.012779822015619656,
+     "tariff_usd_kwh": 0.06386815996194639,
+     "opex_nonenergy_usd_m3": 0.6829648996403672,
+     "capex_usd_per_m3d": 0.1123960557344355,
+     "capex_exponent": 0.0,
+     "discount_rate": 0.1253719905008291,
+     "availability": 0.005399546718833532
+    }
+   },
+   "pond_ha": {
+    "mean": 117.73810604573099,
+    "sd": 46.2192693751133,
+    "p05": 67.62770241377467,
+    "p50": 103.16231307569245,
+    "p95": 214.65732803679896,
+    "min": 65.1787253803921,
+    "max": 243.32279509180952,
+    "S1": {
+     "net_evaporation_m_yr": 0.9963659798707141,
+     "pumping_head_m": 0.0,
+     "tariff_usd_kwh": 0.0,
+     "opex_nonenergy_usd_m3": 0.0,
+     "capex_usd_per_m3d": 0.0,
+     "capex_exponent": 0.0,
+     "discount_rate": 0.0,
+     "availability": 0.0
+    },
+    "ST": {
+     "net_evaporation_m_yr": 0.988292068555885,
+     "pumping_head_m": 0.0,
+     "tariff_usd_kwh": 0.0,
+     "opex_nonenergy_usd_m3": 0.0,
+     "capex_usd_per_m3d": 0.0,
+     "capex_exponent": 0.0,
+     "discount_rate": 0.0,
+     "availability": 0.0
+    }
+   },
+   "base": {
+    "lcow": 0.794,
+    "pond_ha": 82.95454545454545
+   },
+   "oat": {
+    "net_evaporation_m_yr": {
+     "lcow_low": 0.794,
+     "lcow_high": 0.794,
+     "pond_low": 243.33333333333334,
+     "pond_high": 65.17857142857143
+    },
+    "pumping_head_m": {
+     "lcow_low": 0.772,
+     "lcow_high": 0.808,
+     "pond_low": 82.95454545454545,
+     "pond_high": 82.95454545454545
+    },
+    "tariff_usd_kwh": {
+     "lcow_low": 0.766,
+     "lcow_high": 0.895,
+     "pond_low": 82.95454545454545,
+     "pond_high": 82.95454545454545
+    },
+    "opex_nonenergy_usd_m3": {
+     "lcow_low": 0.594,
+     "lcow_high": 0.994,
+     "pond_low": 82.95454545454545,
+     "pond_high": 82.95454545454545
+    },
+    "capex_usd_per_m3d": {
+     "lcow_low": 0.715,
+     "lcow_high": 0.876,
+     "pond_low": 82.95454545454545,
+     "pond_high": 82.95454545454545
+    },
+    "capex_exponent": {
+     "lcow_low": 0.794,
+     "lcow_high": 0.794,
+     "pond_low": 82.95454545454545,
+     "pond_high": 82.95454545454545
+    },
+    "discount_rate": {
+     "lcow_low": 0.714,
+     "lcow_high": 0.883,
+     "pond_low": 82.95454545454545,
+     "pond_high": 82.95454545454545
+    },
+    "availability": {
+     "lcow_low": 0.812,
+     "lcow_high": 0.778,
+     "pond_low": 82.95454545454545,
+     "pond_high": 82.95454545454545
+    }
+   }
+  },
+  {
+   "capacity_m3d": 150000.0,
+   "N": 16384,
+   "seed": 1,
+   "lcow": {
+    "mean": 0.7863605346679687,
+    "sd": 0.14220433780767194,
+    "p05": 0.561,
+    "p50": 0.785,
+    "p95": 1.023,
+    "min": 0.404,
+    "max": 1.27,
+    "S1": {
+     "net_evaporation_m_yr": 0.0,
+     "pumping_head_m": 0.011586858637583589,
+     "tariff_usd_kwh": 0.057887754256938734,
+     "opex_nonenergy_usd_m3": 0.6640377959913372,
+     "capex_usd_per_m3d": 0.08252891061571062,
+     "capex_exponent": 0.07801532029808898,
+     "discount_rate": 0.08728299237282079,
+     "availability": 0.0033466362651976326
+    },
+    "ST": {
+     "net_evaporation_m_yr": 0.0,
+     "pumping_head_m": 0.012473429817024538,
+     "tariff_usd_kwh": 0.06233694098823546,
+     "opex_nonenergy_usd_m3": 0.6665910317642457,
+     "capex_usd_per_m3d": 0.08491596995269209,
+     "capex_exponent": 0.08138634918727347,
+     "discount_rate": 0.09433290085267303,
+     "availability": 0.004074931468996752
+    }
+   },
+   "pond_ha": {
+    "mean": 883.0357953429825,
+    "sd": 346.64452031334974,
+    "p05": 507.20776810331,
+    "p50": 773.7173480676934,
+    "p95": 1609.9299602759922,
+    "min": 488.8404403529407,
+    "max": 1824.9209631885715,
+    "S1": {
+     "net_evaporation_m_yr": 0.9963659798707141,
+     "pumping_head_m": 0.0,
+     "tariff_usd_kwh": 0.0,
+     "opex_nonenergy_usd_m3": 0.0,
+     "capex_usd_per_m3d": 0.0,
+     "capex_exponent": 0.0,
+     "discount_rate": 0.0,
+     "availability": 0.0
+    },
+    "ST": {
+     "net_evaporation_m_yr": 0.9882920685558849,
+     "pumping_head_m": 0.0,
+     "tariff_usd_kwh": 0.0,
+     "opex_nonenergy_usd_m3": 0.0,
+     "capex_usd_per_m3d": 0.0,
+     "capex_exponent": 0.0,
+     "discount_rate": 0.0,
+     "availability": 0.0
+    }
+   },
+   "base": {
+    "lcow": 0.742,
+    "pond_ha": 622.1590909090909
+   },
+   "oat": {
+    "net_evaporation_m_yr": {
+     "lcow_low": 0.742,
+     "lcow_high": 0.742,
+     "pond_low": 1825.0,
+     "pond_high": 488.8392857142857
+    },
+    "pumping_head_m": {
+     "lcow_low": 0.72,
+     "lcow_high": 0.756,
+     "pond_low": 622.1590909090909,
+     "pond_high": 622.1590909090909
+    },
+    "tariff_usd_kwh": {
+     "lcow_low": 0.714,
+     "lcow_high": 0.843,
+     "pond_low": 622.1590909090909,
+     "pond_high": 622.1590909090909
+    },
+    "opex_nonenergy_usd_m3": {
+     "lcow_low": 0.542,
+     "lcow_high": 0.942,
+     "pond_low": 622.1590909090909,
+     "pond_high": 622.1590909090909
+    },
+    "capex_usd_per_m3d": {
+     "lcow_low": 0.677,
+     "lcow_high": 0.811,
+     "pond_low": 622.1590909090909,
+     "pond_high": 622.1590909090909
+    },
+    "capex_exponent": {
+     "lcow_low": 0.691,
+     "lcow_high": 0.827,
+     "pond_low": 622.1590909090909,
+     "pond_high": 622.1590909090909
+    },
+    "discount_rate": {
+     "lcow_low": 0.676,
+     "lcow_high": 0.817,
+     "pond_low": 622.1590909090909,
+     "pond_high": 622.1590909090909
+    },
+    "availability": {
+     "lcow_low": 0.758,
+     "lcow_high": 0.729,
+     "pond_low": 622.1590909090909,
+     "pond_high": 622.1590909090909
+    }
+   }
+  }
+ ]
+}
