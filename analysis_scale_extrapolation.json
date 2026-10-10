@@ -1,0 +1,104 @@
+{
+ "summary": {
+  "n_small_train": 8,
+  "n_large_test": 5,
+  "non_energy_opex_constant_usd_m3": 0.43878025,
+  "opex_powerlaw_exponent_small": -0.007350962197262221,
+  "capex_powerlaw_exponent_small": -0.06058578213165668,
+  "opex_framework": {
+   "mae": 0.06640165,
+   "mape_pct": 16.868818771069833,
+   "bias": 0.06415375
+  },
+  "opex_naive_small_median": {
+   "mae": 0.07300000000000001,
+   "mape_pct": 18.533419332645344,
+   "bias": 0.07300000000000001
+  },
+  "opex_powerlaw_extrapolated": {
+   "mae": 0.047990609889588295,
+   "mape_pct": 11.786894422760005,
+   "bias": 0.020529297488506383
+  },
+  "capex_kbh": {
+   "reported_usd_per_m3d": 1602,
+   "framework_usd_per_m3d": 791.9690639200481,
+   "framework_error_pct": -50.563728843942066,
+   "small_plant_powerlaw_usd_per_m3d": 859.2637202656285,
+   "small_plant_powerlaw_error_pct": -46.36306365383093,
+   "note": "single plant; capital cost in nominal USD of different years across sources; blended-capacity basis (Pearson et al. 2021)"
+  }
+ },
+ "rows": [
+  {
+   "plant": "Cape Coral North (FL)",
+   "capacity_m3d": 45420,
+   "reported_opex": 0.5,
+   "sec_framework": 0.6950000000000001,
+   "framework_opex": 0.49438024999999997,
+   "framework_opex_range": [
+    0.48048025,
+    0.52565525
+   ],
+   "naive_small_median": 0.505,
+   "powerlaw_extrapolated": 0.45311689205344763,
+   "capex_reported": null
+  },
+  {
+   "plant": "Cape Coral Southwest (FL)",
+   "capacity_m3d": 68130,
+   "reported_opex": 0.36,
+   "sec_framework": 0.6499999999999999,
+   "framework_opex": 0.49078025,
+   "framework_opex_range": [
+    0.47778024999999996,
+    0.52003025
+   ],
+   "naive_small_median": 0.505,
+   "powerlaw_extrapolated": 0.4517683612527962,
+   "capex_reported": null
+  },
+  {
+   "plant": "Lee County Green Meadows IX&RO (FL)",
+   "capacity_m3d": 60560,
+   "reported_opex": 0.425,
+   "sec_framework": 0.765,
+   "framework_opex": 0.49998025,
+   "framework_opex_range": [
+    0.48468025,
+    0.5344052499999999
+   ],
+   "naive_small_median": 0.505,
+   "powerlaw_extrapolated": 0.45215968010323293,
+   "capex_reported": null
+  },
+  {
+   "plant": "Lee County North (FL)",
+   "capacity_m3d": 43906,
+   "reported_opex": 0.475,
+   "sec_framework": 0.74,
+   "framework_opex": 0.49798025,
+   "framework_opex_range": [
+    0.48318025,
+    0.53128025
+   ],
+   "naive_small_median": 0.505,
+   "powerlaw_extrapolated": 0.45322982694384756,
+   "capex_reported": null
+  },
+  {
+   "plant": "Kay Bailey Hutchinson (TX)",
+   "capacity_m3d": 56818,
+   "reported_opex": 0.4,
+   "sec_framework": 0.7050000000000001,
+   "framework_opex": 0.49764775,
+   "framework_opex_range": [
+    0.49764775,
+    0.49764775
+   ],
+   "naive_small_median": 0.505,
+   "powerlaw_extrapolated": 0.4523717270892076,
+   "capex_reported": 1602
+  }
+ ]
+}
