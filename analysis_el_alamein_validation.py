@@ -21,8 +21,8 @@ MEASURED = {
     "sec_kwh_m3": (3.68, 4.20),                    # reported range; mean about 3.94
     "capex_usd_per_m3d": (760.0, 931.0),           # abstract/conclusion 760-850; body 931
     "opex_usd_m3": (0.55, 0.63),                   # abstract (EGP 15-17 per m3 in conclusions)
-    "tariff_usd_kwh": 0.039,                       # tariff assumed by the authors
-    "well_depth_m": (35.0, 76.0),                  # two values in the paper
+    "tariff_usd_kwh": 0.039,                       # authors' estimate of the cost of the plant's PV electricity (not a grid tariff)
+    "groundwater_depth_m": (35.0, 76.0),            # Section 3.1 vs Section 3.3 of the paper
 }
 
 def run(tds, rec, head, tariff=MEASURED["tariff_usd_kwh"]):

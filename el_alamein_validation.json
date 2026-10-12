@@ -23,7 +23,7 @@
    0.63
   ],
   "tariff_usd_kwh": 0.039,
-  "well_depth_m": [
+  "groundwater_depth_m": [
    35.0,
    76.0
   ]
