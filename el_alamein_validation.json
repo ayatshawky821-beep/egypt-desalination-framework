@@ -1,0 +1,109 @@
+{
+ "measured_as_reported": {
+  "capacity_m3d": 1000.0,
+  "feed_tds_mg_l": [
+   21150.0,
+   22400.0
+  ],
+  "feed_temp_c": 32.0,
+  "recovery": [
+   0.46,
+   0.35
+  ],
+  "sec_kwh_m3": [
+   3.68,
+   4.2
+  ],
+  "capex_usd_per_m3d": [
+   760.0,
+   931.0
+  ],
+  "opex_usd_m3": [
+   0.55,
+   0.63
+  ],
+  "tariff_usd_kwh": 0.039,
+  "well_depth_m": [
+   35.0,
+   76.0
+  ]
+ },
+ "runs": [
+  {
+   "tds": 21150.0,
+   "recovery": 0.46,
+   "head_m": 35.0,
+   "feed_pressure_bar": "34-42 bar",
+   "conc_tds_mg_l": 38815.0,
+   "sec_total_lo": 2.91,
+   "sec_total_hi": 3.63,
+   "sec_mid": 3.27,
+   "sec_lift": 0.329,
+   "capex_usd_per_m3d": 1139.0,
+   "opex_usd_m3": 0.528,
+   "lcow_usd_m3": 0.935
+  },
+  {
+   "tds": 21150.0,
+   "recovery": 0.46,
+   "head_m": 76.0,
+   "feed_pressure_bar": "34-42 bar",
+   "conc_tds_mg_l": 38815.0,
+   "sec_total_lo": 3.3,
+   "sec_total_hi": 4.02,
+   "sec_mid": 3.66,
+   "sec_lift": 0.714,
+   "capex_usd_per_m3d": 1139.0,
+   "opex_usd_m3": 0.543,
+   "lcow_usd_m3": 0.95
+  },
+  {
+   "tds": 22400.0,
+   "recovery": 0.35,
+   "head_m": 35.0,
+   "feed_pressure_bar": "31-38 bar",
+   "conc_tds_mg_l": 34226.0,
+   "sec_total_lo": 3.5,
+   "sec_total_hi": 4.35,
+   "sec_mid": 3.92,
+   "sec_lift": 0.432,
+   "capex_usd_per_m3d": 1139.0,
+   "opex_usd_m3": 0.553,
+   "lcow_usd_m3": 0.96
+  },
+  {
+   "tds": 22400.0,
+   "recovery": 0.35,
+   "head_m": 76.0,
+   "feed_pressure_bar": "31-38 bar",
+   "conc_tds_mg_l": 34226.0,
+   "sec_total_lo": 4.01,
+   "sec_total_hi": 4.86,
+   "sec_mid": 4.44,
+   "sec_lift": 0.938,
+   "capex_usd_per_m3d": 1139.0,
+   "opex_usd_m3": 0.573,
+   "lcow_usd_m3": 0.98
+  }
+ ],
+ "model_sec_mid_range": [
+  3.27,
+  4.44
+ ],
+ "model_sec_band_all_runs": [
+  2.91,
+  4.86
+ ],
+ "measured_sec_range": [
+  3.68,
+  4.2
+ ],
+ "mean_of_model_sec_mid": 3.82,
+ "mean_sec_error_pct_vs_3.94": -3.0,
+ "capex_error_pct_vs_760": 50.0,
+ "capex_error_pct_vs_931": 22.0,
+ "opex_model_range": [
+  0.528,
+  0.573
+ ]
+}
