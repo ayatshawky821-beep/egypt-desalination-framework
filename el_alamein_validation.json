@@ -105,5 +105,38 @@
  "opex_model_range": [
   0.528,
   0.573
- ]
+ ],
+ "factorial_all_reported_values": {
+  "n": 48,
+  "inputs": {
+   "tds": [
+    21150.0,
+    21250.0,
+    22350.0,
+    22400.0
+   ],
+   "recovery": [
+    0.35,
+    0.4,
+    0.46,
+    0.6
+   ],
+   "head_m": [
+    35.0,
+    76.0,
+    120.0
+   ]
+  },
+  "sec_mid_min": 3.15,
+  "sec_mid_max": 4.97,
+  "sec_mid_median": 3.9,
+  "n_mid_inside_measured_range": 16,
+  "n_band_covers_measured_mean_3.94": 26,
+  "n_measured_recovery_cases": 24,
+  "measured_recovery_sec_mid_median": 4.07,
+  "measured_recovery_sec_mid_min": 3.27,
+  "measured_recovery_sec_mid_max": 4.97,
+  "measured_recovery_n_inside": 8,
+  "measured_recovery_n_band_covers_3.94": 14
+ }
 }

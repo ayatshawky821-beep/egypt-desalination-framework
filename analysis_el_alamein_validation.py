@@ -61,6 +61,28 @@ if __name__ == "__main__":
            "capex_error_pct_vs_760": round(100 * (cx / 760 - 1), 0),
            "capex_error_pct_vs_931": round(100 * (cx / 931 - 1), 0),
            "opex_model_range": [min(r["opex_usd_m3"] for r in runs), max(r["opex_usd_m3"] for r in runs)]}
+    # ---- Full factorial over EVERY value the paper reports for the uncertain inputs (no cherry-picking) ----
+    import itertools
+    TDS = (21150.0, 21250.0, 22350.0, 22400.0)      # Sections 2.4, design table, 3.3, 3.1
+    REC = (0.35, 0.40, 0.46, 0.60)                   # measured end, projection, measured start, design value
+    HEAD = (35.0, 76.0, 120.0)                       # Section 3.1, Section 3.3, design table
+    grid = [run(t, r, h) for t, r, h in itertools.product(TDS, REC, HEAD)]
+    mids = [g["sec_mid"] for g in grid]
+    lo_m, hi_m = MEASURED["sec_kwh_m3"]
+    inside = [lo_m <= g["sec_mid"] <= hi_m for g in grid]
+    band_cover = [g["sec_total_lo"] <= 3.94 <= g["sec_total_hi"] for g in grid]
+    meas_recov = [g for g in grid if g["recovery"] in (0.35, 0.46)]
+    mm = [g["sec_mid"] for g in meas_recov]
+    out["factorial_all_reported_values"] = {
+        "n": len(grid), "inputs": {"tds": TDS, "recovery": REC, "head_m": HEAD},
+        "sec_mid_min": min(mids), "sec_mid_max": max(mids),
+        "sec_mid_median": sorted(mids)[len(mids) // 2],
+        "n_mid_inside_measured_range": sum(inside),
+        "n_band_covers_measured_mean_3.94": sum(band_cover),
+        "n_measured_recovery_cases": len(meas_recov),
+        "measured_recovery_sec_mid_median": sorted(mm)[len(mm) // 2], "measured_recovery_sec_mid_min": min(mm), "measured_recovery_sec_mid_max": max(mm),
+        "measured_recovery_n_inside": sum(lo_m <= x <= hi_m for x in mm),
+        "measured_recovery_n_band_covers_3.94": sum(g["sec_total_lo"] <= 3.94 <= g["sec_total_hi"] for g in meas_recov)}
     json.dump(out, open("el_alamein_validation.json", "w"), indent=1)
     for r in runs: print(r)
     print("model SEC mid range", min(secs), max(secs), "measured", MEASURED["sec_kwh_m3"])
