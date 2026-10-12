@@ -106,3 +106,11 @@ def test_el_moghra_reference_value():
     f = EGYPT_BRACKISH_PRESETS["el_moghra_aquifer"]
     d = DesalinationPlantDesign(feed=f, capacity=PlantCapacity(20000., 0.80), is_coastal_site=False, is_arid_climate=True).build()
     assert d["economic_analysis"]["lcow"]["lcow_usd_m3"] == pytest.approx(0.794, abs=0.001)
+
+# ---- regression pins for the El Alamein check (reproducibility only; these do NOT test validity against the plant) ----
+def test_el_alamein_script_is_reproducible():
+    from analysis_el_alamein_validation import run
+    r = run(21150.0, 0.46, 35.0)
+    assert r["sec_mid"] == pytest.approx(3.27, abs=0.01)
+    assert r["capex_usd_per_m3d"] == pytest.approx(1139, abs=1)
+    assert 0.50 < r["opex_usd_m3"] < 0.58
