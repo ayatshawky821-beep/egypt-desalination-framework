@@ -19,7 +19,8 @@ A and B are back-calculated from the FilmTec BW30-400 datasheet test point
 25 C, 15 % recovery). Fouling factor FF = 0.85 (typical well-water design).
 
 Array: 7 elements per vessel, average flux 22 LMH (as the framework),
-two stages (2:1) for recovery <= 0.80 and three stages (4:2:1) above;
+for each recovery, the lowest-energy array among one stage (<= 55 %), two stages 2:1
+(50-85 %) and three stages 4:2:1 (>= 70 %), preferring designs within the 41-bar rating;
 interstage booster pumps where needed to give each stage its share of the
 flux (as in vendor designs), no energy recovery, pump efficiency 0.80 (as the
 framework). Feed pressure is solved so that the array meets the target
@@ -79,10 +80,9 @@ def calibrate():
     return A, B
 
 
-def array(cf, recovery, temp_c, A0, B0, boost=True):
+def _array(cf, recovery, temp_c, A0, B0, boost=True, vessels=None):
     tcf = math.exp(2640 * (1 / 298.15 - 1 / (temp_c + 273.15)))
     A, B = A0 * tcf * FF, B0 * tcf
-    vessels = [2, 1] if recovery <= 0.80 + 1e-9 else [4, 2, 1]
     n_el = sum(vessels) * N_EL
     qp_target = FLUX * AREA * n_el / 1000          # m3/h
     qf = qp_target / recovery
@@ -121,6 +121,19 @@ def array(cf, recovery, temp_c, A0, B0, boost=True):
             "boosters_bar": boosts, "conc_osmotic_bar": OSM * cc,
             "recovery_check": qp / qf, "max_pressure_bar": pmax,
             "within_41bar": bool(pmax <= 41.0), "lead_flux_ok": bool(fl[0] <= 35.0)}
+
+
+def array(cf, recovery, temp_c, A0, B0, boost=True):
+    """The designer's choice: for each recovery, the lowest-energy array among those normally used
+    at that recovery -- one stage (<= 55 %), two stages 2:1 (50-85 %), three stages 4:2:1 (>= 70 %) --
+    preferring designs within the 41-bar element rating."""
+    cands = []
+    if recovery <= 0.55 + 1e-9: cands.append([1])
+    if 0.50 - 1e-9 <= recovery <= 0.85 + 1e-9: cands.append([2, 1])
+    if recovery >= 0.70 - 1e-9: cands.append([4, 2, 1])
+    res = [_array(cf, recovery, temp_c, A0, B0, boost, v) for v in cands]
+    ok = [d for d in res if d["within_41bar"]] or res
+    return min(ok, key=lambda d: d["sec_kwh_m3"])
 
 
 def framework_pressure(tds, rec):
